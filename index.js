@@ -1,11 +1,19 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
-});
+app.use(express.static(__dirname));
+app.use(express.static("public"));
+
+// app.get('/', function(req, res){
+//   res.sendFile(__dirname + '/index.html');
+// });
+//
+// app.get('/styles.css', function(req, res){
+//   res.sendFile(__dirname + '/styles.css');
+// });
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
@@ -13,6 +21,11 @@ io.on('connection', function(socket){
   });
 });
 
+io.on('connection', function(socket) {
+  socket.on('friend online', function(name){
+    io.emit('friend online', name);
+  })
+});
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
