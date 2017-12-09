@@ -7,15 +7,7 @@ var port = process.env.PORT || 3000;
 app.use(express.static(__dirname));
 app.use(express.static("public"));
 
-// app.get('/', function(req, res){
-//   res.sendFile(__dirname + '/index.html');
-// });
-//
-// app.get('/styles.css', function(req, res){
-//   res.sendFile(__dirname + '/styles.css');
-// });
-
-io.on('connection', function(socket){
+io.on('connection', function(socket) {
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
@@ -26,6 +18,6 @@ io.on('connection', function(socket) {
     io.emit('friend online', name);
   })
 });
-http.listen(port, function(){
+http.listen(port, function() {
   console.log('listening on *:' + port);
 });
