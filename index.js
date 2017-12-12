@@ -11,13 +11,12 @@ io.on('connection', function(socket) {
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
-});
 
-io.on('connection', function(socket) {
   socket.on('friend online', function(name){
     io.emit('friend online', name);
-  })
+  });
 });
+
 http.listen(port, function() {
   console.log('listening on *:' + port);
 });

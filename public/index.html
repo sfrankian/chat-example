@@ -5,17 +5,21 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div id="rightPane">
-      <h2>Friends Online</h2>
-      <ul id="friendsOnline"></ul>
+    <div class="chatBody">
+      <ul id="messages"></ul>
+      <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
     </div>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+    <div class="loginDiv">
+      <h2>Nickname?</h2>
+      <input type="text"/>
+      <button id="loginBtn" onClick="hideLoginAndShowChats();">Enter</button>
+    </div>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
+    <script src="helpers.js"></script>
+    <!-- <script>
       $(function () {
         var socket = io();
         $('form').submit(function(){
@@ -31,6 +35,6 @@
           $('#friendsOnline').append($('<li>').text(name));
         });
       });
-    </script>
+    </script> -->
   </body>
 </html>
